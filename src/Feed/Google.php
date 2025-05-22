@@ -3,7 +3,7 @@
 namespace Feeds\XmlGenerator\Feed;
 
 use Feeds\XmlGenerator\AbstractFeed;
-use Feeds\XmlGenerator\ValidationException;
+use Feeds\XmlGenerator\Exceptions\ValidationException;
 use Spatie\ArrayToXml\ArrayToXml;
 
 class Google extends AbstractFeed

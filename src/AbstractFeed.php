@@ -37,7 +37,6 @@ abstract class AbstractFeed implements FeedInterface
 
     public function addItem(array $item): self
     {
-        $this->validateItem($item);
         $this->items[] = $item;
         return $this;
     }
