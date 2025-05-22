@@ -2,7 +2,6 @@
     "name": "codefit/ecommerce-xml",
     "description": "XML feed generator for various e-commerce platforms",
     "type": "library",
-    "version": "1.0.0",
     "license": "MIT",
     "autoload": {
         "psr-4": {
@@ -27,7 +26,7 @@
     "config": {
         "sort-packages": true
     },
-    
+
     "minimum-stability": "dev",
     "prefer-stable": true
 } 
