@@ -52,7 +52,7 @@ try {
             ->setDescription($productData['description'])
             ->setLink($productData['link'])
             ->setImageLink($productData['image_link'])
-            ->setPrice($productData['price'])
+            ->setPriceVat($productData['price'])
             ->setBrand($productData['brand'])
             ->setGtin($productData['gtin'])
             ->setMpn($productData['mpn'])
