@@ -1,0 +1,33 @@
+{
+    "name": "codefit/ecommerce-xml",
+    "description": "XML feed generator for various e-commerce platforms",
+    "type": "library",
+    "version": "1.0.0",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Feeds\\XmlGenerator\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Feeds\\XmlGenerator\\Tests\\": "tests/"
+        }
+    },
+    "require": {
+        "php": "^8.1",
+        "spatie/array-to-xml": "^3.0",
+        "illuminate/support": "^10.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.0",
+        "orchestra/testbench": "^8.0"
+    },
+
+    "config": {
+        "sort-packages": true
+    },
+    
+    "minimum-stability": "dev",
+    "prefer-stable": true
+} 
