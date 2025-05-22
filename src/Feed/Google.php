@@ -109,17 +109,18 @@ class Google extends AbstractFeed
     protected function validateFeed(): void
     {
         $requiredTags = [
-            'id',           // Jedinečný identifikátor produktu
-            'title',        // Název produktu
-            'description',  // Popis produktu
-            'link',         // URL adresa produktu
-            'image_link',   // URL adresa hlavního obrázku produktu
-            'availability', // Dostupnost produktu (např. in stock, out of stock)
-            'price',        // Cena produktu včetně měny (např. 29.99 CZK)
-            'condition',    // Stav produktu (např. new, used, refurbished)
-            'brand',        // Značka nebo výrobce produktu
-            'gtin'          // Globální identifikátor produktu (např. EAN, UPC)
+            'g:id',           // Jedinečný identifikátor produktu
+            'g:title',        // Název produktu
+            'g:description',  // Popis produktu
+            'g:link',         // URL adresa produktu
+            'g:image_link',   // URL adresa hlavního obrázku produktu
+            'g:availability', // Dostupnost produktu (např. in stock, out of stock)
+            'g:price',        // Cena produktu včetně měny (např. 29.99 CZK)
+            'g:condition',    // Stav produktu (např. new, used, refurbished)
+            'g:brand',        // Značka nebo výrobce produktu
+            'g:gtin'          // Globální identifikátor produktu (např. EAN, UPC)
         ];
+    
         foreach ($this->items as $item) {
             foreach ($requiredTags as $tag) {
                 if (!isset($item[$tag])) {
