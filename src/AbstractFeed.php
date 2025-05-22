@@ -35,16 +35,6 @@ abstract class AbstractFeed implements FeedInterface
         return file_put_contents($filename, $this->generate()) !== false;
     }
 
-    protected function validateItem(array $item): void
-    {
-        $requiredTags = ['ITEM_ID', 'PRODUCTNAME', 'PRODUCT', 'DESCRIPTION', 'CATEGORYTEXT', 'EAN', 'PRODUCTNO', 'MANUFACTURER', 'URL', 'DELIVERY_DATE', 'IMGURL', 'PRICE_VAT'];
-        foreach ($requiredTags as $tag) {
-            if (!isset($item[$tag])) {
-                throw new ValidationException("Missing required tag: {$tag}");
-            }
-        }
-    }
-
     public function addItem(array $item): self
     {
         $this->validateItem($item);
