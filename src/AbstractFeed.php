@@ -6,6 +6,10 @@ use Feeds\XmlGenerator\Contracts\FeedInterface;
 use Spatie\ArrayToXml\ArrayToXml;
 use Feeds\XmlGenerator\Exceptions\ValidationException;
 
+use Feeds\XmlGenerator\Entities\GoogleItem;
+use Feeds\XmlGenerator\Entities\ZboziItem;
+use Feeds\XmlGenerator\Entities\HeurekaItem;
+
 abstract class AbstractFeed implements FeedInterface
 {
     protected array $items = [];
@@ -35,7 +39,9 @@ abstract class AbstractFeed implements FeedInterface
         return file_put_contents($filename, $this->generate()) !== false;
     }
 
-    public function addItem(array $item): self
+    public function addItem(
+        $item
+    ): self
     {
         $this->items[] = $item;
         return $this;

@@ -77,7 +77,7 @@ try {
             ->setImgUrl($productData['imgUrl'])
             ->setPriceVat($productData['priceVat']);
 
-        $feed->addItem($item->toArray());
+        $feed->addItem($item);
 
         // Add parameters
         $feed->addParameter('farba', 'Grafit');

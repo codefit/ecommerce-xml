@@ -58,7 +58,7 @@ try {
             ->setMpn($productData['mpn'])
             ->setGoogleProductCategory($productData['google_product_category']);
 
-        $feed->addItem($item->toArray());
+        $feed->addItem($item);
         $feed->addAvailability('in stock');
         $feed->addCondition('new');
         $feed->addShipping('CZ', 'Standard', 99.00);
@@ -122,7 +122,7 @@ try {
             ->setImgUrl($productData['imgUrl'])
             ->setPriceVat($productData['priceVat']);
 
-        $feed->addItem($item->toArray());
+        $feed->addItem($item);
         $feed->addParameter('barva', 'Grafit');
         $feed->addParameter('kapacita', '256 GB');
         $feed->addDelivery(HeurekaDeliveryMethod::DPD, 99.0);
@@ -190,7 +190,7 @@ try {
             ->setMaxCpc($productData['maxCpc'])
             ->setMaxCpcSearch($productData['maxCpcSearch']);
 
-        $feed->addItem($item->toArray());
+        $feed->addItem($item);
         $feed->addParameter('barva', 'Grafit');
         $feed->addParameter('kapacita', '256 GB');
         $feed->addDelivery(ZboziDeliveryMethod::DPD, 99.0);

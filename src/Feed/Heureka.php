@@ -5,6 +5,7 @@ namespace Feeds\XmlGenerator\Feed;
 use Feeds\XmlGenerator\AbstractFeed;
 use Feeds\XmlGenerator\Enums\HeurekaDeliveryMethod;
 use Feeds\XmlGenerator\Exceptions\ValidationException;
+use Feeds\XmlGenerator\Entities\HeurekaItem;
 use Spatie\ArrayToXml\ArrayToXml;
 
 class Heureka extends AbstractFeed
@@ -66,27 +67,29 @@ class Heureka extends AbstractFeed
         return file_put_contents($path, $this->generate()) !== false;
     }
 
-    public function addItem(array $item): self
+    public function addItem($item): self
     {
         $this->validateItem($item);
-        $this->items[] = $item;
+        $this->items[] = $item->toArray();
         return $this;
     }
 
-    protected function validateItem(array $item): void
+    protected function validateItem(HeurekaItem $item): void
     {
-        $requiredTags = [
-            'ITEM_ID',       // Jedinečný identifikátor produktu
-            'PRODUCTNAME',   // Název produktu
-            'PRICE_VAT',     // Cena produktu včetně DPH
-            'URL',           // URL adresa produktu
-            'CATEGORYTEXT',  // Kategorie produktu
-            'DELIVERY_DATE', // Doba dodání produktu
-            'IMGURL'         // URL adresa obrázku produktu
+        $requiredProperties = [
+            'itemId' => 'ITEM_ID',
+            'productName' => 'PRODUCTNAME',
+            'priceVat' => 'PRICE_VAT',
+            'url' => 'URL',
+            'categoryText' => 'CATEGORYTEXT',
+            'deliveryDate' => 'DELIVERY_DATE',
+            'imgUrl' => 'IMGURL'
         ];
-        foreach ($requiredTags as $tag) {
-            if (!isset($item[$tag])) {
-                throw new ValidationException("Missing required tag: {$tag}");
+
+        foreach ($requiredProperties as $property => $tag) {
+            $getter = 'get' . ucfirst($property);
+            if (is_null($item->$getter())) {
+                throw new ValidationException("Missing required property: {$tag}");
             }
         }
     }

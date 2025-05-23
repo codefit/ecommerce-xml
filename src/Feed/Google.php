@@ -4,6 +4,7 @@ namespace Feeds\XmlGenerator\Feed;
 
 use Feeds\XmlGenerator\AbstractFeed;
 use Feeds\XmlGenerator\Exceptions\ValidationException;
+use Feeds\XmlGenerator\Entities\GoogleItem;
 use Spatie\ArrayToXml\ArrayToXml;
 
 class Google extends AbstractFeed
@@ -105,30 +106,32 @@ class Google extends AbstractFeed
         return file_put_contents($path, $this->generate()) !== false;
     }
 
-    public function addItem(array $item): self
+    public function addItem($item): self
     {
         $this->validateItem($item);
-        $this->items[] = $item;
+        $this->items[] = $item->toArray();
         return $this;
     }
 
-    protected function validateItem(array $item): void
+    protected function validateItem(GoogleItem $item): void
     {
-        $requiredTags = [
-            'g:id',           // Jedinečný identifikátor produktu
-            'g:title',        // Název produktu
-            'g:description',  // Popis produktu
-            'g:link',         // URL adresa produktu
-            'g:image_link',   // URL adresa hlavního obrázku produktu
-            'g:availability', // Dostupnost produktu (např. in stock, out of stock)
-            'g:price',        // Cena produktu včetně měny (např. 29.99 CZK)
-            'g:condition',    // Stav produktu (např. new, used, refurbished)
-            'g:brand',        // Značka nebo výrobce produktu
-            'g:gtin'          // Globální identifikátor produktu (např. EAN, UPC)
+        $requiredProperties = [
+            'id' => 'g:id',
+            'title' => 'g:title',
+            'description' => 'g:description',
+            'link' => 'g:link',
+            'imageLink' => 'g:image_link',
+            'priceVat' => 'g:price',
+            'brand' => 'g:brand',
+            'gtin' => 'g:gtin',
+            'availability' => 'g:availability',
+            'condition' => 'g:condition'
         ];
-        foreach ($requiredTags as $tag) {
-            if (!isset($item[$tag])) {
-                throw new ValidationException("Missing required tag: {$tag}");
+
+        foreach ($requiredProperties as $property => $tag) {
+            $getter = 'get' . ucfirst($property);
+            if (is_null($item->$getter())) {
+                throw new ValidationException("Missing required property: {$tag}");
             }
         }
     }

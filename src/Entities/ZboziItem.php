@@ -22,9 +22,9 @@ class ZboziItem
     private array $delivery = [];
     private array $extraMessages = [];
 
-    public function getItemId(): string
+    public function getItemId(): ?string
     {
-        return $this->itemId;
+        return isset($this->itemId) ? $this->itemId : null;
     }
 
     public function setItemId(string $itemId): self
@@ -33,9 +33,9 @@ class ZboziItem
         return $this;
     }
 
-    public function getProductName(): string
+    public function getProductName(): ?string
     {
-        return $this->productName;
+        return isset($this->productName) ? $this->productName : null;
     }
 
     public function setProductName(string $productName): self
@@ -44,9 +44,9 @@ class ZboziItem
         return $this;
     }
 
-    public function getProduct(): string
+    public function getProduct(): ?string
     {
-        return $this->product;
+        return isset($this->product) ? $this->product : null;
     }
 
     public function setProduct(string $product): self
@@ -55,9 +55,9 @@ class ZboziItem
         return $this;
     }
 
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
-        return $this->description;
+        return isset($this->description) ? $this->description : null;
     }
 
     public function setDescription(string $description): self
@@ -66,9 +66,9 @@ class ZboziItem
         return $this;
     }
 
-    public function getCategoryText(): string
+    public function getCategoryText(): ?string
     {
-        return $this->categoryText;
+        return isset($this->categoryText) ? $this->categoryText : null;
     }
 
     public function setCategoryText(string $categoryText): self
@@ -77,9 +77,9 @@ class ZboziItem
         return $this;
     }
 
-    public function getEan(): string
+    public function getEan(): ?string
     {
-        return $this->ean;
+        return isset($this->ean) ? $this->ean : null;
     }
 
     public function setEan(string $ean): self
@@ -88,9 +88,9 @@ class ZboziItem
         return $this;
     }
 
-    public function getProductNo(): string
+    public function getProductNo(): ?string
     {
-        return $this->productNo;
+        return isset($this->productNo) ? $this->productNo : null;
     }
 
     public function setProductNo(string $productNo): self
@@ -99,9 +99,9 @@ class ZboziItem
         return $this;
     }
 
-    public function getManufacturer(): string
+    public function getManufacturer(): ?string
     {
-        return $this->manufacturer;
+        return isset($this->manufacturer) ? $this->manufacturer : null;
     }
 
     public function setManufacturer(string $manufacturer): self
@@ -110,9 +110,9 @@ class ZboziItem
         return $this;
     }
 
-    public function getUrl(): string
+    public function getUrl(): ?string
     {
-        return $this->url;
+        return isset($this->url) ? $this->url : null;
     }
 
     public function setUrl(string $url): self
@@ -121,9 +121,9 @@ class ZboziItem
         return $this;
     }
 
-    public function getDeliveryDate(): int
+    public function getDeliveryDate(): ?int
     {
-        return $this->deliveryDate;
+        return isset($this->deliveryDate) ? $this->deliveryDate : null;
     }
 
     public function setDeliveryDate(int $deliveryDate): self
@@ -132,9 +132,9 @@ class ZboziItem
         return $this;
     }
 
-    public function getImgUrl(): string
+    public function getImgUrl(): ?string
     {
-        return $this->imgUrl;
+        return isset($this->imgUrl) ? $this->imgUrl : null;
     }
 
     public function setImgUrl(string $imgUrl): self
@@ -143,9 +143,9 @@ class ZboziItem
         return $this;
     }
 
-    public function getPriceVat(): float
+    public function getPriceVat(): ?float
     {
-        return $this->priceVat;
+        return isset($this->priceVat) ? $this->priceVat : null;
     }
 
     public function setPriceVat(float $priceVat): self
@@ -154,9 +154,9 @@ class ZboziItem
         return $this;
     }
 
-    public function getMaxCpc(): float
+    public function getMaxCpc(): ?float
     {
-        return $this->maxCpc;
+        return isset($this->maxCpc) ? $this->maxCpc : null;
     }
 
     public function setMaxCpc(float $maxCpc): self
@@ -165,9 +165,9 @@ class ZboziItem
         return $this;
     }
 
-    public function getMaxCpcSearch(): float
+    public function getMaxCpcSearch(): ?float
     {
-        return $this->maxCpcSearch;
+        return isset($this->maxCpcSearch) ? $this->maxCpcSearch : null;
     }
 
     public function setMaxCpcSearch(float $maxCpcSearch): self
@@ -221,20 +221,20 @@ class ZboziItem
     public function toArray(): array
     {
         $data = [
-            'ITEM_ID' => $this->itemId,
-            'PRODUCTNAME' => $this->productName,
-            'PRODUCT' => $this->product,
-            'DESCRIPTION' => $this->description,
-            'CATEGORYTEXT' => $this->categoryText,
-            'EAN' => $this->ean,
-            'PRODUCTNO' => $this->productNo,
-            'MANUFACTURER' => $this->manufacturer,
-            'URL' => $this->url,
-            'DELIVERY_DATE' => $this->deliveryDate,
-            'IMGURL' => $this->imgUrl,
-            'PRICE_VAT' => $this->priceVat,
-            'MAX_CPC' => $this->maxCpc,
-            'MAX_CPC_SEARCH' => $this->maxCpcSearch
+            'ITEM_ID' => $this->getItemId(),
+            'PRODUCTNAME' => $this->getProductName(),
+            'PRODUCT' => $this->getProduct(),
+            'DESCRIPTION' => $this->getDescription(),
+            'CATEGORYTEXT' => $this->getCategoryText(),
+            'EAN' => $this->getEan(),
+            'PRODUCTNO' => $this->getProductNo(),
+            'MANUFACTURER' => $this->getManufacturer(),
+            'URL' => $this->getUrl(),
+            'DELIVERY_DATE' => $this->getDeliveryDate(),
+            'IMGURL' => $this->getImgUrl(),
+            'PRICE_VAT' => $this->getPriceVat(),
+            'MAX_CPC' => $this->getMaxCpc(),
+            'MAX_CPC_SEARCH' => $this->getMaxCpcSearch()
         ];
 
         if (!empty($this->parameters)) {
@@ -251,4 +251,4 @@ class ZboziItem
 
         return $data;
     }
-} 
+}

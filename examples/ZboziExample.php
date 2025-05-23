@@ -69,7 +69,8 @@ try {
     // Add products to feed
     foreach ($products as $productData) {
         $item = new ZboziItem();
-        $item->setItemId($productData['itemId'])
+        $item
+            ->setItemId($productData['itemId'])
             ->setProductName($productData['productName'])
             ->setProduct($productData['product'])
             ->setDescription($productData['description'])
@@ -84,7 +85,7 @@ try {
             ->setMaxCpc($productData['maxCpc'])
             ->setMaxCpcSearch($productData['maxCpcSearch']);
 
-        $feed->addItem($item->toArray());
+        $feed->addItem($item);
 
         // Add parameters
         $feed->addParameter('barva', 'Grafit');

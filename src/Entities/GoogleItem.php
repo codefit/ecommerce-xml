@@ -20,9 +20,9 @@ class GoogleItem
     private array $shipping = [];
     private array $tax = [];
 
-    public function getId(): string
+    public function getId(): ?string
     {
-        return $this->id;
+        return isset($this->id) ? $this->id : null;
     }
 
     public function setId(string $id): self
@@ -31,9 +31,9 @@ class GoogleItem
         return $this;
     }
 
-    public function getTitle(): string
+    public function getTitle(): ?string
     {
-        return $this->title;
+        return isset($this->title) ? $this->title : null;
     }
 
     public function setTitle(string $title): self
@@ -42,9 +42,9 @@ class GoogleItem
         return $this;
     }
 
-    public function getDescription(): string
+    public function getDescription(): ?string
     {
-        return $this->description;
+        return isset($this->description) ? $this->description : null;
     }
 
     public function setDescription(string $description): self
@@ -53,9 +53,9 @@ class GoogleItem
         return $this;
     }
 
-    public function getLink(): string
+    public function getLink(): ?string
     {
-        return $this->link;
+        return isset($this->link) ? $this->link : null;
     }
 
     public function setLink(string $link): self
@@ -64,9 +64,9 @@ class GoogleItem
         return $this;
     }
 
-    public function getImageLink(): string
+    public function getImageLink(): ?string
     {
-        return $this->imageLink;
+        return isset($this->imageLink) ? $this->imageLink : null;
     }
 
     public function setImageLink(string $imageLink): self
@@ -82,14 +82,14 @@ class GoogleItem
         return $this;
     }
 
-    public function getPriceVat(): string
+    public function getPriceVat(): ?string
     {
-        return $this->priceVat . ' ' . $this->currency;
+        return isset($this->priceVat) ? $this->priceVat . ' ' . ($this->currency ?? 'CZK') : null;
     }
 
-    public function getBrand(): string
+    public function getBrand(): ?string
     {
-        return $this->brand;
+        return isset($this->brand) ? $this->brand : null;
     }
 
     public function setBrand(string $brand): self
@@ -98,9 +98,9 @@ class GoogleItem
         return $this;
     }
 
-    public function getGtin(): string
+    public function getGtin(): ?string
     {
-        return $this->gtin;
+        return isset($this->gtin) ? $this->gtin : null;
     }
 
     public function setGtin(string $gtin): self
@@ -109,9 +109,9 @@ class GoogleItem
         return $this;
     }
 
-    public function getMpn(): string
+    public function getMpn(): ?string
     {
-        return $this->mpn;
+        return isset($this->mpn) ? $this->mpn : null;
     }
 
     public function setMpn(string $mpn): self
@@ -120,9 +120,9 @@ class GoogleItem
         return $this;
     }
 
-    public function getGoogleProductCategory(): string
+    public function getGoogleProductCategory(): ?string
     {
-        return $this->googleProductCategory;
+        return isset($this->googleProductCategory) ? $this->googleProductCategory : null;
     }
 
     public function setGoogleProductCategory(string $googleProductCategory): self
@@ -131,9 +131,9 @@ class GoogleItem
         return $this;
     }
 
-    public function getAvailability(): string
+    public function getAvailability(): ?string
     {
-        return $this->availability;
+        return isset($this->availability) ? $this->availability : null;
     }
 
     public function setAvailability(string $availability): self
@@ -142,9 +142,9 @@ class GoogleItem
         return $this;
     }
 
-    public function getCondition(): string
+    public function getCondition(): ?string
     {
-        return $this->condition;
+        return isset($this->condition) ? $this->condition : null;
     }
 
     public function setCondition(string $condition): self
@@ -176,18 +176,18 @@ class GoogleItem
     public function toArray(): array
     {
         $data = [
-            'g:id' => $this->id,
-            'g:title' => $this->title,
-            'g:description' => $this->description,
-            'g:link' => $this->link,
-            'g:image_link' => $this->imageLink,
+            'g:id' => $this->getId(),
+            'g:title' => $this->getTitle(),
+            'g:description' => $this->getDescription(),
+            'g:link' => $this->getLink(),
+            'g:image_link' => $this->getImageLink(),
             'g:price' => $this->getPriceVat(),
-            'g:brand' => $this->brand,
-            'g:gtin' => $this->gtin,
-            'g:mpn' => $this->mpn,
-            'g:google_product_category' => $this->googleProductCategory,
-            'g:availability' => $this->availability,
-            'g:condition' => $this->condition
+            'g:brand' => $this->getBrand(),
+            'g:gtin' => $this->getGtin(),
+            'g:mpn' => $this->getMpn(),
+            'g:google_product_category' => $this->getGoogleProductCategory(),
+            'g:availability' => $this->getAvailability(),
+            'g:condition' => $this->getCondition()
         ];
 
         if (!empty($this->shipping)) {
@@ -200,4 +200,4 @@ class GoogleItem
 
         return $data;
     }
-} 
+}

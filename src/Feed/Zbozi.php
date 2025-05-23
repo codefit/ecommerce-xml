@@ -5,6 +5,7 @@ namespace Feeds\XmlGenerator\Feed;
 use Feeds\XmlGenerator\AbstractFeed;
 use Feeds\XmlGenerator\Enums\ZboziDeliveryMethod;
 use Feeds\XmlGenerator\Exceptions\ValidationException;
+use Feeds\XmlGenerator\Entities\ZboziItem;
 use Spatie\ArrayToXml\ArrayToXml;
 
 class Zbozi extends AbstractFeed
@@ -45,10 +46,10 @@ class Zbozi extends AbstractFeed
         return $this;
     }
 
-    public function addItem(array $item): self
+    public function addItem($item): self
     {
         $this->validateItem($item);
-        $this->items[] = $item;
+        $this->items[] = $item->toArray();
         return $this;
     }
 
@@ -57,21 +58,23 @@ class Zbozi extends AbstractFeed
         return file_put_contents($path, $this->generate()) !== false;
     }
 
-    protected function validateItem(array $item): void
+    protected function validateItem(ZboziItem $item): void
     {
-        $requiredTags = [
-            'ITEM_ID',       // Jedinečný identifikátor produktu
-            'PRODUCTNAME',   // Název produktu
-            'DESCRIPTION',   // Popis produktu
-            'URL',           // URL adresa produktu
-            'IMGURL',        // URL adresa obrázku produktu
-            'PRICE_VAT',     // Cena produktu včetně DPH
-            'DELIVERY_DATE', // Doba dodání produktu
-            'CATEGORYTEXT'   // Kategorie produktu
+        $requiredProperties = [
+            'itemId' => 'ITEM_ID',
+            'productName' => 'PRODUCTNAME',
+            'description' => 'DESCRIPTION',
+            'url' => 'URL',
+            'imgUrl' => 'IMGURL',
+            'priceVat' => 'PRICE_VAT',
+            'deliveryDate' => 'DELIVERY_DATE',
+            'categoryText' => 'CATEGORYTEXT'
         ];
-        foreach ($requiredTags as $tag) {
-            if (!isset($item[$tag])) {
-                throw new ValidationException("Missing required tag: {$tag}");
+
+        foreach ($requiredProperties as $property => $tag) {
+            $getter = 'get' . ucfirst($property);
+            if (is_null($item->$getter())) {
+                throw new ValidationException("Missing required property: {$tag}");
             }
         }
     }
