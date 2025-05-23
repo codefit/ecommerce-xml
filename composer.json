@@ -1,6 +1,6 @@
 {
     "name": "codefit/ecommerce-xml",
-    "description": "XML feed generator for various e-commerce platforms",
+    "description": "Generátor XML feedů pro Zboží CZ, Heureka CZ, Heureka SK a Google Merchant",
     "type": "library",
     "license": "MIT",
     "autoload": {
