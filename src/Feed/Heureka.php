@@ -63,11 +63,17 @@ class Heureka extends AbstractFeed
 
     public function save(string $path): bool
     {
-        $this->validateFeed();
         return file_put_contents($path, $this->generate()) !== false;
     }
 
-    protected function validateFeed(): void
+    public function addItem(array $item): self
+    {
+        $this->validateItem($item);
+        $this->items[] = $item;
+        return $this;
+    }
+
+    protected function validateItem(array $item): void
     {
         $requiredTags = [
             'ITEM_ID',       // Jedinečný identifikátor produktu
@@ -78,11 +84,9 @@ class Heureka extends AbstractFeed
             'DELIVERY_DATE', // Doba dodání produktu
             'IMGURL'         // URL adresa obrázku produktu
         ];
-        foreach ($this->items as $item) {
-            foreach ($requiredTags as $tag) {
-                if (!isset($item[$tag])) {
-                    throw new ValidationException("Missing required tag: {$tag}");
-                }
+        foreach ($requiredTags as $tag) {
+            if (!isset($item[$tag])) {
+                throw new ValidationException("Missing required tag: {$tag}");
             }
         }
     }

@@ -45,13 +45,19 @@ class Zbozi extends AbstractFeed
         return $this;
     }
 
+    public function addItem(array $item): self
+    {
+        $this->validateItem($item);
+        $this->items[] = $item;
+        return $this;
+    }
+
     public function save(string $path): bool
     {
-        $this->validateFeed();
         return file_put_contents($path, $this->generate()) !== false;
     }
 
-    protected function validateFeed(): void
+    protected function validateItem(array $item): void
     {
         $requiredTags = [
             'ITEM_ID',       // Jedinečný identifikátor produktu
@@ -63,11 +69,9 @@ class Zbozi extends AbstractFeed
             'DELIVERY_DATE', // Doba dodání produktu
             'CATEGORYTEXT'   // Kategorie produktu
         ];
-        foreach ($this->items as $item) {
-            foreach ($requiredTags as $tag) {
-                if (!isset($item[$tag])) {
-                    throw new ValidationException("Missing required tag: {$tag}");
-                }
+        foreach ($requiredTags as $tag) {
+            if (!isset($item[$tag])) {
+                throw new ValidationException("Missing required tag: {$tag}");
             }
         }
     }

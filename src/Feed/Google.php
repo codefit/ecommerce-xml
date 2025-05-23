@@ -102,11 +102,17 @@ class Google extends AbstractFeed
 
     public function save(string $path): bool
     {
-        $this->validateFeed();
         return file_put_contents($path, $this->generate()) !== false;
     }
 
-    protected function validateFeed(): void
+    public function addItem(array $item): self
+    {
+        $this->validateItem($item);
+        $this->items[] = $item;
+        return $this;
+    }
+
+    protected function validateItem(array $item): void
     {
         $requiredTags = [
             'g:id',           // Jedinečný identifikátor produktu
@@ -120,12 +126,9 @@ class Google extends AbstractFeed
             'g:brand',        // Značka nebo výrobce produktu
             'g:gtin'          // Globální identifikátor produktu (např. EAN, UPC)
         ];
-    
-        foreach ($this->items as $item) {
-            foreach ($requiredTags as $tag) {
-                if (!isset($item[$tag])) {
-                    throw new ValidationException("Missing required tag: {$tag}");
-                }
+        foreach ($requiredTags as $tag) {
+            if (!isset($item[$tag])) {
+                throw new ValidationException("Missing required tag: {$tag}");
             }
         }
     }
