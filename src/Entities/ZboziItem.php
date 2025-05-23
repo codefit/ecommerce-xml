@@ -250,7 +250,7 @@ class ZboziItem
         }
 
         foreach($data as $key => $item){
-            if($item === ""){
+            if(is_null($item)){
                 unset($data[$key]);
             }
         }
