@@ -249,6 +249,12 @@ class ZboziItem
             $data['EXTRA_MESSAGE'] = $this->extraMessages;
         }
 
+        foreach($data as $key => $item){
+            if($item === ""){
+                unset($data[$key]);
+            }
+        }
+
         return $data;
     }
 }

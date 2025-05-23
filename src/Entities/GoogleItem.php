@@ -198,6 +198,12 @@ class GoogleItem
             $data['g:tax'] = $this->tax;
         }
 
+        foreach($data as $key => $item){
+            if($item === ""){
+                unset($data[$key]);
+            }
+        }
+
         return $data;
     }
 }

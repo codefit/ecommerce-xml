@@ -30,7 +30,7 @@ try {
             'brand' => 'Apple',
             'gtin' => '1234567890123',
             'mpn' => 'IP13P256',
-            'google_product_category' => 'Electronics > Phones & Accessories > Mobile Phones'
+            'google_product_category' => ''
         ],
         [
             'id' => '12346',

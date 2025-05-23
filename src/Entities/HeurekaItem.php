@@ -239,6 +239,12 @@ class HeurekaItem
             $data['WARRANTY'] = $this->warranties;
         }
 
+        foreach($data as $key => $item){
+            if($item === ""){
+                unset($data[$key]);
+            }
+        }
+        
         return $data;
     }
 }
