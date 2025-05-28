@@ -36,7 +36,7 @@ try {
             'description' => 'Nejnovější iPhone s výkonným čipem A15 Bionic',
             'link' => 'https://example.com/iphone-13-pro',
             'image_link' => 'https://example.com/images/iphone-13-pro.jpg',
-            'price' => '34990',
+            'price' => 34990.00,
             'brand' => 'Apple',
             'gtin' => '1234567890123',
             'mpn' => 'IP13P256',
