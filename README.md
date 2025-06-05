@@ -1,6 +1,6 @@
 # Feeds XML Generator
 
-Tento balíček umožňuje generovat XML feedy pro různé služby (Google, Heureka, Zbozi) s podporou validace a dynamického nastavení parametrů.
+Tento balíček umožňuje generovat XML feedy pro různé služby (Google, Heureka, Zbozi, Facebook) s podporou validace a dynamického nastavení parametrů.
 
 ## Instalace
 
