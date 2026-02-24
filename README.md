@@ -346,48 +346,16 @@ try {
 
 ### HeurekaDeliveryMethod
 
-- `PPL`: PPL
-- `DPD`: DPD
-- `DPD_PICKUP`: DPD výdejní místo
-- `CPOST`: Česká pošta
-- `CPOST_PICKUP`: Česká pošta výdejní místo
-- `GEIS`: Geis
-- `GEIS_PICKUP`: Geis výdejní místo
-- `GLS`: GLS
-- `GLS_PICKUP`: GLS výdejní místo
-- `INTIME`: Intime
-- `INTIME_PICKUP`: Intime výdejní místo
-- `POST`: Pošta
-- `POST_PICKUP`: Pošta výdejní místo
-- `SLOVAKIA_POST`: Slovenská pošta
-- `SLOVAKIA_POST_PICKUP`: Slovenská pošta výdejní místo
-- `TOPTRANS`: Toptrans
-- `TOPTRANS_PICKUP`: Toptrans výdejní místo
-- `ULOZENKA`: Uloženka
-- `ULOZENKA_PICKUP`: Uloženka výdejní místo
-- `ZASILKOVNA`: Zásilkovna
-- `ZASILKOVNA_PICKUP`: Zásilkovna výdejní místo
+Hodnoty odpovídají [DELIVERY_ID ve specifikaci Heureka XML feedu](https://sluzby.heureka.cz/napoveda/xml-feed/#DELIVERY).
+
+- **Doručení na adresu:** `CESKA_POSTA`, `CESKA_POSTA_DOPORUCENA_ZASILKA`, `CSAD_LOGISTIK_OSTRAVA`, `DPD`, `DHL`, `DSV`, `FOFR`, `GEBRUDER_WEISS`, `GEIS`, `GLS`, `PPL`, `SEEGMULLER`, `TOPTRANS`, `UPS`, `FEDEX`, `RABEN_LOGISTICS`, `ZASILKOVNA_NA_ADRESU`, `ONE_COURIER`, `RHENUS_LOGISTICS`, `MESSENGER`, `BALIKOVNA_NA_ADRESU`, `QDL`, `DB_SCHENKER`, `EMONS`
+- **Výdejní místa:** `ZASILKOVNA`, `DPD_PICKUP`, `BALIKOVNA_DEPOTAPI`, `ONE_POINT`, `PPL_PARCELSHOP`, `GLS_PARCELSHOP`, `ALZAPOINT`, `UPS_ACCESS_POINT`
+- **Výdejní boxy:** `DPD_BOX`, `Z_BOX`, `ONE_BOX`, `PPL_PARCELBOX`, `BALIKOVNA_BOX`, `ALZABOX`, `GLS_PARCELBOX`
+- **Ostatní:** `ONLINE`, `VLASTNI_PREPRAVA`
 
 ### ZboziDeliveryMethod
 
-- `PPL`: PPL
-- `DPD`: DPD
-- `DPD_PICKUP`: DPD výdejní místo
-- `CPOST`: Česká pošta
-- `CPOST_PICKUP`: Česká pošta výdejní místo
-- `GEIS`: Geis
-- `GEIS_PICKUP`: Geis výdejní místo
-- `GLS`: GLS
-- `GLS_PICKUP`: GLS výdejní místo
-- `INTIME`: Intime
-- `INTIME_PICKUP`: Intime výdejní místo
-- `POST`: Pošta
-- `POST_PICKUP`: Pošta výdejní místo
-- `SLOVAKIA_POST`: Slovenská pošta
-- `SLOVAKIA_POST_PICKUP`: Slovenská pošta výdejní místo
-- `TOPTRANS`: Toptrans
-- `TOPTRANS_PICKUP`: Toptrans výdejní místo
-- `ULOZENKA`: Uloženka
-- `ULOZENKA_PICKUP`: Uloženka výdejní místo
-- `ZASILKOVNA`: Zásilkovna
-- `ZASILKOVNA_PICKUP`: Zásilkovna výdejní místo
+Hodnoty odpovídají [DELIVERY (DELIVERY_ID) ve specifikaci Zboží.cz / Sklik](https://napoveda.sklik.cz/reklamy/xml-feed/specifikace/).
+
+- **Výdejní místa:** `ALZABOX`, `CESKA_POSTA_BALIKOVNA`, `CESKA_POSTA_NA_POSTU`, `DPD_PICKUP`, `GLS_PARCELSHOP`, `PPL_PARCELSHOP`, `TOPTRANS_DEPO`, `ONE_POINT`, `ZASILKOVNA`, `VLASTNI_VYDEJNI_MISTA`
+- **Dopravci:** `KURYR_123` (123_KURYR), `CESKA_POSTA`, `BALIKOVNA_NA_ADRESU`, `DACHSER`, `DB_SCHENKER`, `DPD`, `DHL`, `DSV`, `EMONS`, `FOFR`, `GEBRUDER_WEISS`, `GEIS`, `GLS`, `HDS`, `HELICAR`, `IN_TIME_KURYR`, `ONE_COURIER`, `NAS_KURYR`, `MESSENGER`, `LAGERMAX`, `PPL`, `TNT`, `TOPTRANS`, `UPS`, `FEDEX`, `RABEN_LOGISTICS`, `RHENUS`, `ZASILKOVNA_NA_ADRESU`, `VLASTNI_PREPRAVA`
